@@ -7,7 +7,7 @@ module PlatinaWorld
     end
 
     def build
-      generate_paths(@loaded_data).map do |file_path|
+      generate_paths(@loaded_data).flat_map do |file_path|
         PlatinaWorld::Path.new(file_path)
       end
     end
@@ -17,9 +17,7 @@ module PlatinaWorld
     def generate_paths(paths)
       case paths
       when Array
-        paths.flat_map do |p|
-          generate_paths(p)
-        end
+        paths.flat_map { |p| generate_paths(p) }
       when Hash
         dir = paths.keys.first
         files_in_dir = paths.values.first
@@ -31,7 +29,7 @@ module PlatinaWorld
           "#{dir}/"
         end
       else
-        paths
+        [paths]
       end
     end
   end
