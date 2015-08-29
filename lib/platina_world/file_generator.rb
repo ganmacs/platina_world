@@ -23,7 +23,7 @@ module PlatinaWorld
     private
 
     def generate_directory(path)
-      FileUtils.mkdir(path)
+      FileUtils.mkdir_p(path.directory_name)
     end
 
     def generate_file(path)
