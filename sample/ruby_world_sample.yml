@@ -1,0 +1,11 @@
+- lib:
+    - platina_world:
+    - platina_world.rb
+- spec:
+    - platina_world:
+    - platina_world_spec.rb
+    - spec_helper.rb
+- Gemfile
+- .rpsec
+- .gitignore
+- .rubocop.yml
