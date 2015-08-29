@@ -24,7 +24,7 @@ module PlatinaWorld
     def option_parser
       @optin_parser ||= OptionParser.new do |opt|
         opt.version = PlatinaWorld::VERSION
-        opt.on("-f", "--file [file]", "configuration file path") { |file_name| file_name }
+        opt.on("-p", "--path [file]", "Configuration file path") { |file_path| file_path }
       end
     end
   end
