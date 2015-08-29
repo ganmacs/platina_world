@@ -15,13 +15,13 @@ gem 'platina_world'
 
 And then execute:
 
-```sh
+```bash
 $ bundle
 ```
 
 Or install it yourself as:
 
-```sh
+```bash
 $ gem install platina_world
 ```
 
@@ -50,7 +50,7 @@ Create a below file as `pw.yml`
     - paltinaworld.rb
 - spec:
     - paltinaworld:
-      - platinaworld_spec.rb
+        - platinaworld_spec.rb
     - spec_helper.rb
 - .rspec
 - .gitignore
@@ -58,7 +58,7 @@ Create a below file as `pw.yml`
 
 and run as below
 
-```sh
-platina_world pw.yml
+```bash
+$ platinaworld -p pw.yml
 ```
 
