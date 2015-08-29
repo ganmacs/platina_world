@@ -1,8 +1,6 @@
 # Platinaworld
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/platinaworld`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+platinaworld Creates platina world in a moment
 
 ## Installation
 
@@ -22,7 +20,39 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If you want to create those directory and file
+
+```
+.
+├── .gitignore
+├── .rspec
+├── lib
+│   ├── platinaworld
+│   └── platinaworld.rb
+└── spec
+    ├── platinaworld
+    │   └── platinaworld_spec.rb
+    └── spec_helper.rb
+```
+create blow file(`pw.yml`)
+
+```yml
+lib
+  - paltinaworld
+  - paltinaworld.rb
+spec
+  - paltinaworld
+    - platinaworld_spec.rb
+  - spec_helper.rb
+.rspec
+.gitignore
+```
+
+and run as blow
+
+```
+platinaworld pw.yml
+```
 
 ## Development
 
