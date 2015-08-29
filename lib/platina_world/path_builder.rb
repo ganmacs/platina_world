@@ -15,23 +15,23 @@ module PlatinaWorld
     private
 
     def generate_paths(paths)
-      paths.flat_map do |path|
-        case path
-        when Array
-          generate_paths(path)
-        when Hash
-          dir = path.keys.first
-          files_in_dir = path.values.first
-
-          if files_in_dir
-            v = generate_paths(files_in_dir)
-            v.map { |e| "#{dir}/#{e}" }
-          else
-            "#{dir}/"
-          end
-        else
-          path
+      case paths
+      when Array
+        paths.flat_map do |p|
+          generate_paths(p)
         end
+      when Hash
+        dir = paths.keys.first
+        files_in_dir = paths.values.first
+
+        if files_in_dir
+          v = generate_paths(files_in_dir)
+          v.map { |e| "#{dir}/#{e}" }
+        else
+          "#{dir}/"
+        end
+      else
+        paths
       end
     end
   end
