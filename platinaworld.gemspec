@@ -1,17 +1,17 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'platinaworld/version'
+require "platina_world/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "platinaworld"
-  spec.version       = Platinaworld::VERSION
+  spec.name          = "platina_world"
+  spec.version       = PlatinaWorld::VERSION
   spec.authors       = ["ganmacs"]
   spec.email         = ["ganmacs@gmail.com"]
 
   spec.summary       = "Creating platina world in a moment"
   spec.description   = "Creating platina world in a moment"
-  spec.homepage      = "https://github.com/ganmacs/platinaworld"
+  spec.homepage      = "https://github.com/ganmacs/platina_world"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.

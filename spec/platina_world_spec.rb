@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Platinaworld do
+describe PlatinaWorld do
   it "has a version number" do
-    expect(Platinaworld::VERSION).not_to be nil
+    expect(PlatinaWorld::VERSION).not_to be nil
   end
 
   it "does something useful" do
