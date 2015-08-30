@@ -2,12 +2,12 @@ require "platina_world/path"
 
 module PlatinaWorld
   class PathBuilder
-    def initialize(loaded_data)
-      @loaded_data = loaded_data
+    def initialize(loaded_file)
+      @loaded_file = loaded_file
     end
 
     def build
-      generate_paths(@loaded_data).flat_map do |file_path|
+      generate_paths(@loaded_file).flat_map do |file_path|
         PlatinaWorld::Path.new(file_path)
       end
     end
