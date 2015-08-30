@@ -5,7 +5,7 @@ module PlatinaWorld
     DEFAULT_FILE_PATH = "./platina_world.yml".freeze
     ACCEPT_EXT_NAMES = %w(.yml .yaml).freeze
 
-    def initialize(file_path = DEFAULT_FILE_PATH)
+    def initialize(file_path)
       @file_path = file_path
     end
 
@@ -22,7 +22,9 @@ module PlatinaWorld
 
     private
 
-    attr_reader :file_path
+    def file_path
+      @file_path ||= DEFAULT_FILE_PATH
+    end
 
     def file_load
       YAML.load_file(file_path)

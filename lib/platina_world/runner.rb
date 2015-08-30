@@ -27,7 +27,7 @@ module PlatinaWorld
     end
 
     def file_path
-      @options["file"]
+      @options["path"]
     end
   end
 end
