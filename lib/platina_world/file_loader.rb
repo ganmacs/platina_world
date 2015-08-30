@@ -1,9 +1,11 @@
 require "yaml"
+require "platina_world/errors/file_path_error"
+require "platina_world/errors/invalid_extension_error"
 
 module PlatinaWorld
   class FileLoader
     DEFAULT_FILE_PATH = "./platina_world.yml".freeze
-    ACCEPT_EXT_NAMES = %w(.yml .yaml).freeze
+    ACCEPTABLE_EXTENSIONS = %w(.yml .yaml).freeze
 
     def initialize(file_path)
       @file_path = file_path
@@ -12,15 +14,23 @@ module PlatinaWorld
     def load
       case
       when !exist_file?
-        raise "#{file_path} is not found."
-      when !valid_ext_name?
-        raise "Ext name is invalid. plase pass .yml or .yaml file"
+        PlatinaWorld::Logger.error(file_path_error) and abort
+      when !valid_extension_type?
+        PlatinaWorld::Logger.error(invalid_extion_error) and abort
       else
         file_load
       end
     end
 
     private
+
+    def file_path_error
+      PlatinaWorld::Errors::FilePathError.new(file_path)
+    end
+
+    def invalid_extion_error
+      PlatinaWorld::Errors::InvalidExtensionError.new(ACCEPTABLE_EXTENSIONS)
+    end
 
     def file_path
       @file_path ||= DEFAULT_FILE_PATH
@@ -34,8 +44,8 @@ module PlatinaWorld
       File.exist?(file_path)
     end
 
-    def valid_ext_name?
-      ACCEPT_EXT_NAMES.include?(File.extname(file_path))
+    def valid_extension_type?
+      ACCEPTABLE_EXTENSIONS.include?(File.extname(file_path))
     end
   end
 end

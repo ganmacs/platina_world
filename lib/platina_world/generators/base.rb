@@ -16,7 +16,10 @@ module PlatinaWorld
             generate_file(path)
           end
 
-          PlatinaWorld::Logger.info("create", path.file_path)
+          PlatinaWorld::FileStatus.info(
+            action: "create",
+            path: path.file_path
+          )
         end
       end
 
