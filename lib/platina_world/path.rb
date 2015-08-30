@@ -1,5 +1,7 @@
 module PlatinaWorld
   class Path
+    attr_reader :file_path
+
     def initialize(file_path)
       @file_path = file_path
     end
@@ -21,8 +23,6 @@ module PlatinaWorld
     end
 
     private
-
-    attr_reader :file_path
 
     # Return file name and dirctory name as Array
     # @params [String] file path (e.g "a/b/c")

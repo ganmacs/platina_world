@@ -6,16 +6,15 @@ module PlatinaWorld
       private
 
       def generate_directory(path)
-        p path.directory_name
+        PlatinaWorld::Logger.info("Create Directory: #{path.file_path}")
       end
 
       def generate_file(path)
-        p path.file_name
+        PlatinaWorld::Logger.info("Create File:      #{path.file_path}")
       end
 
       def generate_file_with_dir(path)
-        p path.directory_name
-        p "#{path.directory_name}/#{path.file_name}"
+        PlatinaWorld::Logger.info("Create File:      #{path.file_path}")
       end
     end
   end
