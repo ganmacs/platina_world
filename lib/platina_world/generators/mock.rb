@@ -9,11 +9,11 @@ module PlatinaWorld
         # noop
       end
 
-      def generate_file(path)
+      def generate_file_with_dir(path)
         # noop
       end
 
-      def generate_file_with_dir(path)
+      def generate_file(path)
         # noop
       end
     end

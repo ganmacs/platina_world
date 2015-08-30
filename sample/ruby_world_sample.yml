@@ -6,6 +6,6 @@
     - platina_world_spec.rb
     - spec_helper.rb
 - Gemfile
-- .rpsec
+- .rspec
 - .gitignore
 - .rubocop.yml
