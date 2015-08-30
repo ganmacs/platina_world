@@ -15,6 +15,8 @@ module PlatinaWorld
           else
             generate_file(path)
           end
+
+          PlatinaWorld::Logger.info("create", path.file_path)
         end
       end
 

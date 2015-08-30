@@ -1,4 +1,4 @@
-require 'logger'
+require "logger"
 
 module PlatinaWorld
   class Logger
@@ -13,11 +13,29 @@ module PlatinaWorld
       end
     end
 
+    class FileFormatter
+      def call(severity, time, program_name, message)
+        file_format(severity) % message
+      end
+
+      def file_format(severity)
+        case severity
+        when "INFO"
+          "      \e[32m%{action}\e[0m  %{path}\n"
+        when "ERROR"
+          "      \e[31m%{action}\e[0m  %{path}\n"
+        end
+      end
+    end
+
     class << self
       %w(info errro).each do |method_name|
-        define_method(method_name) do |msg, logging_device = $stdout|
+        define_method(method_name) do |action, path, logging_device = $stdout|
           @logging_device = logging_device
-          logger.info(msg)
+          logger.info(
+            action: action,
+            path: path
+          )
         end
       end
 
@@ -35,7 +53,7 @@ module PlatinaWorld
 
       def build_logger
         ::Logger.new(logging_device).tap do |logger|
-          logger.formatter = PlatinaWorld::Logger::Formatter.new
+          logger.formatter = PlatinaWorld::Logger::FileFormatter.new
         end
       end
     end
