@@ -62,3 +62,13 @@ and run as below
 $ platinaworld -p pw.yml
 ```
 
+
+## TODO
+
+- [ x ] dry-run
+- [ x ] logger
+- [ x ] error class
+- [ ] has contents
+- [ ] json parse
+- [ ] tree command json parse
+- [ ] easy format
