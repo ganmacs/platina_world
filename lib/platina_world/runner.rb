@@ -1,33 +1,37 @@
-require "platina_world/file_loader"
 require "platina_world/file_generator"
 require "platina_world/path_builder"
 
 module PlatinaWorld
   class Runner
-    def initialize(options)
-      @options = options
+    def initialize(loaded_file, dry_run: dry_run)
+      @loaded_file = loaded_file
+      @dry_run = dry_run
     end
 
-    def run
+    def run(dry_run: dry_run)
       file_generator.call
     end
 
     private
 
-    def file_generator
+    def dry_file_generator
       PlatinaWorld::FileGenerator.new(paths)
     end
 
+    def file_generator
+      generator_class.new(paths)
+    end
+
+    def generator_class
+      if @dry_run
+        PlatinaWorld::FileGenerator.new(paths)
+      else
+        PlatinaWorld::FileGenerator.new(paths)
+      end
+    end
+
     def paths
-      @paths ||= PlatinaWorld::PathBuilder.new(loaded_data).build
-    end
-
-    def loaded_data
-      @loaded_data ||= PlatinaWorld::FileLoader.new(file_path).load
-    end
-
-    def file_path
-      @options["path"]
+      @paths ||= PlatinaWorld::PathBuilder.new(@loaded_file).build
     end
   end
 end
