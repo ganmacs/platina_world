@@ -2,7 +2,7 @@ describe PlatinaWorld::PathBuilder do
   let(:path_builder) { described_class.new(file_path) }
 
   describe "#build" do
-    subject { extract_file_path(path_builder.build) }
+    subject { path_builder.build.map(&:file_path) }
 
     context "when data is String" do
       let(:file_path) do
@@ -51,22 +51,9 @@ describe PlatinaWorld::PathBuilder do
       it do
         is_expected.to eq ["platina/worlds/star1.rb",
                            "platina/worlds/star2.rb",
-                           "platina/the",
+                           "platina/the/",
                            "platina/world1.rb",
                            "platina/world2.rb"]
-      end
-    end
-  end
-
-  def extract_file_path(paths)
-    paths.map do |path|
-      case
-      when path.directory?
-        "#{path.directory_name}"
-      when path.has_directory?
-        "#{path.directory_name}/#{path.file_name}"
-      else
-        "#{path.file_name}"
       end
     end
   end
