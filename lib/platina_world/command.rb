@@ -21,9 +21,9 @@ module PlatinaWorld
 
     def runner_class
       if dry_run?
-        PlatinaWorld::Runner::Dry
+        PlatinaWorld::Runners::Dry
       else
-        PlatinaWorld::Runner::Production
+        PlatinaWorld::Runners::Production
       end
     end
 

@@ -1,7 +1,7 @@
 require "platina_world/path_builder"
 
 module PlatinaWorld
-  module Runner
+  module Runners
     class Base
       def initialize(loaded_file)
         @loaded_file = loaded_file

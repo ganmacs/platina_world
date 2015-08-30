@@ -2,7 +2,7 @@ require "platina_world/runners/base"
 require "platina_world/generators/mock"
 
 module PlatinaWorld
-  module Runner
+  module Runners
     class Dry < Base
       private
 
