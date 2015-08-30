@@ -1,4 +1,4 @@
-describe PlatinaWorld::FileGenerator do
+describe PlatinaWorld::Generator::File do
   let(:file_generator) { described_class.new(paths) }
 
   describe "#call" do
