@@ -65,9 +65,10 @@ $ platinaworld -p pw.yml
 
 ## TODO
 
-- [ x ] dry-run
-- [ x ] logger
-- [ x ] error class
+- [x] dry-run
+- [x] logger
+- [x] error class
+- [ ] check file exist or not
 - [ ] has contents
 - [ ] json parse
 - [ ] tree command json parse
