@@ -1,0 +1,20 @@
+[
+    {
+        "lib": [
+            {
+                "platinaworld": []
+            },
+            "platinaworld.rb"
+        ]
+    },
+    {
+        "spec": [
+            {
+                "platinaworld": ["platinaworld_spec.rb"]
+            },
+            "spec_helper.rb"
+        ]
+    },
+    ".rspec",
+    ".gitignore"
+]

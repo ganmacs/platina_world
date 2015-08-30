@@ -1,5 +1,6 @@
 require "optparse"
-require "platina_world/runner"
+require "platina_world/runners/dry"
+require "platina_world/runners/production"
 require "platina_world/file_loader"
 
 module PlatinaWorld
@@ -15,7 +16,15 @@ module PlatinaWorld
     private
 
     def runner
-      @runner ||= PlatinaWorld::Runner.new(loaded_file, dry_run: dry_run?)
+      runner_class.new(loaded_file)
+    end
+
+    def runner_class
+      if dry_run?
+        PlatinaWorld::Runner::Dry
+      else
+        PlatinaWorld::Runner::Production
+      end
     end
 
     def loaded_file
@@ -38,6 +47,7 @@ module PlatinaWorld
       @optin_parser ||= OptionParser.new do |opt|
         opt.version = PlatinaWorld::VERSION
         opt.on("-p", "--path [file]", "Configuration file path")
+        opt.on("-n", "--dry-run", "run in dry-run mode")
       end
     end
   end
