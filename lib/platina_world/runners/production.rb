@@ -7,7 +7,7 @@ module PlatinaWorld
       private
 
       def generator_class
-        PlatinaWorld::Generator::File
+        PlatinaWorld::Generators::File
       end
     end
   end

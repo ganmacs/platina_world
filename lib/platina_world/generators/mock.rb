@@ -1,7 +1,7 @@
 require "platina_world/generators/base"
 
 module PlatinaWorld
-  module Generator
+  module Generators
     class Mock < Base
       private
 

@@ -2,7 +2,7 @@ require "platina_world/generators/base"
 require "fileutils"
 
 module PlatinaWorld
-  module Generator
+  module Generators
     class File < Base
       private
 

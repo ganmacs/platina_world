@@ -7,7 +7,7 @@ module PlatinaWorld
       private
 
       def generator_class
-        PlatinaWorld::Generator::Mock
+        PlatinaWorld::Generators::Mock
       end
     end
   end

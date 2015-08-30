@@ -1,5 +1,5 @@
 module PlatinaWorld
-  module Generator
+  module Generators
     class Base
       def initialize(paths)
         @paths = paths
