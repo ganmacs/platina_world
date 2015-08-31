@@ -46,7 +46,7 @@ Create a below file as `pw.yml`
 
 ```yml
 - lib:
-    - paltinaworld
+    - paltinaworld:
     - paltinaworld.rb
 - spec:
     - paltinaworld:
@@ -62,13 +62,13 @@ and run as below
 $ platinaworld -p pw.yml
 ```
 
-
 ## TODO
 
 - [x] dry-run
 - [x] logger
 - [x] error class
 - [x] check file exist or not
+- [ ] dot file
 - [ ] has contents
 - [ ] json parse
 - [ ] tree command json parse
