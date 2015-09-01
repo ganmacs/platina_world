@@ -6,12 +6,12 @@ module PlatinaWorld
 
     def initialize
       @root_path = "#{ENV['HOME']}/.platina_world".freeze
-      @template_file_pattern = "#{root_path}/*_world.{yml,yaml}".freeze
+      @template_file_pattern = "#{root_path}/*.{yml,yaml}".freeze
     end
 
     def all
       @all ||= all_files.each do |file|
-        file.match(%r!#{root_path}/(?<attr>.*)\_world!) do |m|
+        file.match(%r!#{root_path}/(?<attr>.*)\.(yml|yaml)!) do |m|
           puts m[:attr]
         end
       end
@@ -27,7 +27,7 @@ module PlatinaWorld
     end
 
     def file(template)
-      "#{root_path}/#{template}_world.yml"
+      "#{root_path}/#{template}.yml"
     end
 
     def exist?

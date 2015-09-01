@@ -52,7 +52,10 @@ module PlatinaWorld
     end
 
     def template_path
-      options["template"]
+      @template_path ||= begin
+        option_parser.permute!(@argv) # call #permute! to clear @argv
+        @argv.pop
+      end
     end
 
     def setup?
@@ -74,9 +77,12 @@ module PlatinaWorld
     def option_parser
       @optin_parser ||= OptionParser.new do |opt|
         opt.version = PlatinaWorld::VERSION
+        opt.banner = "Usage: platinaworld [options]\n       platinawrold [boilerplate]"
+
+        opt.separator ""
+        opt.separator "Options:"
         opt.on("-p", "--path [file]", "Configuration file path")
         opt.on("-n", "--dry-run", "run in dry-run mode")
-        opt.on("-t", "--template [file]", "template from #{template_manager.root_path}/`file`_world.yml")
         opt.on("-l", "--list", "show tempalte lists")
         opt.on("-s", "--setup", "create tempalte directory as #{template_manager.root_path}")
       end
