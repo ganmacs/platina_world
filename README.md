@@ -68,7 +68,9 @@ $ platinaworld -p pw.yml
 - [x] logger
 - [x] error class
 - [x] check file exist or not
-- [ ] dot file
+- [x] dot file
+- [ ] usage
+- [ ] manager spec
 - [ ] has contents
 - [ ] json parse
 - [ ] tree command json parse
