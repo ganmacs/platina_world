@@ -11,8 +11,11 @@ module PlatinaWorld
     end
 
     def call
-      if list?
+      case
+      when list?
         template_manager.all
+      when setup?
+        template_manager.setup
       else
         runner.run
       end
@@ -37,22 +40,18 @@ module PlatinaWorld
     end
 
     def loaded_file
-      if setup?
-        template_manager.root_path
-      else
-        PlatinaWorld::FileLoader.new(file_path).load
-      end
+      PlatinaWorld::FileLoader.new(file_path).load
     end
 
     def file_path
-      if tempalte_path
-        "#{template_manager.root_path}/#{tempalte_path}_world.yml"
+      if template_path
+        template_manager.file(template_path)
       else
         options["path"]
       end
     end
 
-    def tempalte_path
+    def template_path
       options["template"]
     end
 
@@ -77,7 +76,7 @@ module PlatinaWorld
         opt.version = PlatinaWorld::VERSION
         opt.on("-p", "--path [file]", "Configuration file path")
         opt.on("-n", "--dry-run", "run in dry-run mode")
-        opt.on("-t", "--template [file]", "template from ~/.platina_world/`file`_world.yml")
+        opt.on("-t", "--template [file]", "template from #{template_manager.root_path}/`file`_world.yml")
         opt.on("-l", "--list", "show tempalte lists")
         opt.on("-s", "--setup", "create tempalte directory as #{template_manager.root_path}")
       end
