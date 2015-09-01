@@ -42,7 +42,7 @@ If you want to create those directories and files
     └── spec_helper.rb
 ```
 
-Create a below file as `pw.yml`
+Create a below file as `$HOME/.platina_world/ruby.yml`
 
 ```yml
 - lib:
@@ -59,7 +59,7 @@ Create a below file as `pw.yml`
 and run as below
 
 ```bash
-$ platinaworld -p pw.yml
+$ platinaworld ruby
 ```
 
 ## TODO
