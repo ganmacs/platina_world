@@ -62,6 +62,17 @@ and run as below
 $ platinaworld ruby
 ```
 
+#### Contents
+
+If you want to create file  which has contents, then use `@` literal as below.
+
+```yml
+- .rspec@https://filepath.com
+- .gitignore@$HOME/.platina_world/t/ruby/.gitignore
+```
+
+then create `.rspec` file which contents get from `http://filepaht.com`, and `.gitignore` file which contents get from `$HOME/.platina_world/t/ruby/.gitignore.paltinaworld`
+
 ## TODO
 
 - [x] dry-run
@@ -70,8 +81,8 @@ $ platinaworld ruby
 - [x] check file exist or not
 - [x] dot file
 - [x] usage
+- [x] has contents( @postion syntax ?)
 - [ ] manager spec
-- [ ] has contents
 - [ ] json parse
 - [ ] tree command json parse
 - [ ] easy format
