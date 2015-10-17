@@ -2,6 +2,7 @@
 
 <a href="https://codeclimate.com/github/ganmacs/platina_world"><img src="https://codeclimate.com/github/ganmacs/platina_world/badges/gpa.svg" /></a>
 [![Build Status](https://travis-ci.org/ganmacs/platina_world.svg)](https://travis-ci.org/ganmacs/platina_world)
+[![Test Coverage](https://codeclimate.com/github/ganmacs/platina_world/badges/coverage.svg)](https://codeclimate.com/github/ganmacs/platina_world/coverage)
 
 platina_world Creates platina world in a moment
 
