@@ -8,14 +8,10 @@ module PlatinaWorld
     end
 
     def build
-      fetcher_class.new(path)
+      fetcher_class.new(@uri)
     end
 
     private
-
-    def path
-      @path ||= PlatinaWorld::Path.new(@uri.to_s)
-    end
 
     def fetcher_class
       case @uri

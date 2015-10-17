@@ -39,7 +39,7 @@ describe PlatinaWorld::Runner::Production do
 
           it "run FileUtils.touch with 'a' and File write"do
             expect(FileUtils).to receive(:touch).with("a").once
-            expect(::Net::HTTP).to receive(:get).with("https://google.com")
+            expect_any_instance_of(PlatinaWorld::Fetcher::Net).to receive(:fetch_contents).with(no_args)
             runner.run
           end
         end
@@ -48,11 +48,13 @@ describe PlatinaWorld::Runner::Production do
           let(:file_path) { "a@file/path" }
           let(:path) { paths.first }
 
+          before do
+            allow_any_instance_of(PlatinaWorld::Fetcher::Local).to receive(:valid?).and_return(true)
+          end
+
           it "run FileUtils.touch with 'a' and File write"do
-            allow(::PlatinaWorld::Fetcher::Local).to receive(:valid?).and_return(true)
-            allow(::PlatinaWorld::Fetcher::Local).to receive(:read).and_return("")
             expect(FileUtils).to receive(:touch).with("a").once
-            # expect(::File).to receive(:write).with(path, path).once
+            expect_any_instance_of(PlatinaWorld::Fetcher::Local).to receive(:fetch_contents).with(no_args)
             runner.run
           end
         end

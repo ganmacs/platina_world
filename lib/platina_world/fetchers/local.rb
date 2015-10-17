@@ -6,15 +6,19 @@ module PlatinaWorld
       private
 
       def valid?
-        @path.exist?
+        exist_resouce?
       end
 
       def fetch_contents
-        File.read(@path.to_s)
+        File.read(expanded_uri)
       end
 
-      def expand(uri)
-        uri.to_s.gsub("$HOME", ENV["HOME"])
+      def expanded_uri
+        @expanded_uri ||= @uri.to_s.gsub("$HOME", ENV["HOME"])
+      end
+
+      def exist_resouce?
+        ::File.exist?(expanded_uri)
       end
     end
   end

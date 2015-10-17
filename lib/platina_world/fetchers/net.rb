@@ -11,7 +11,7 @@ module PlatinaWorld
       end
 
       def fetch_contents
-        ::Net::HTTP.get(@path.to_s)
+        ::Net::HTTP.get(@uri)
       end
     end
   end
