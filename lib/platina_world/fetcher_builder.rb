@@ -3,15 +3,19 @@ require "platina_world/fetchers/net"
 
 module PlatinaWorld
   class FetcherBuilder
-    def initialize(path)
-      @uri = URI.parse(path)
+    def initialize(uri)
+      @uri = URI.parse(uri)
     end
 
     def build
-      fetcher_class.new(@uri)
+      fetcher_class.new(path)
     end
 
     private
+
+    def path
+      @path ||= PlatinaWorld::Path.new(@uri.to_s)
+    end
 
     def fetcher_class
       case @uri

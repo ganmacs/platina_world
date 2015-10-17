@@ -1,5 +1,4 @@
-require "net/http"
-require "platina_world/fetchers/base.rb"
+require "platina_world/fetchers/base"
 
 module PlatinaWorld
   module Fetcher
@@ -7,23 +6,15 @@ module PlatinaWorld
       private
 
       def valid?
-        exist_file?
+        @path.exist?
       end
 
-      def fetch
-        File.read(path)
-      end
-
-      def path
-        expand(@uri)
+      def fetch_contents
+        File.read(@path.to_s)
       end
 
       def expand(uri)
         uri.to_s.gsub("$HOME", ENV["HOME"])
-      end
-
-      def exist_file?
-        File.exist?(path)
       end
     end
   end

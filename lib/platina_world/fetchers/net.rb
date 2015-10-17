@@ -1,5 +1,5 @@
 require "net/http"
-require "platina_world/fetchers/base.rb"
+require "platina_world/fetchers/base"
 
 module PlatinaWorld
   module Fetcher
@@ -10,8 +10,8 @@ module PlatinaWorld
         true
       end
 
-      def fetch
-        ::Net::HTTP.get(@uri)
+      def fetch_contents
+        ::Net::HTTP.get(@path.to_s)
       end
     end
   end

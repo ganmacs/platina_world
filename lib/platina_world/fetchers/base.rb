@@ -1,18 +1,22 @@
 module PlatinaWorld
   module Fetcher
     class Base
-      def initialize(uri)
-        @uri = uri.dup
+      # @uri [PlatinaWorld::Path]
+      def initialize(path)
+        @path = path
       end
 
-      def run
-        raise "invalid file path: #{@uri}" unless valid?
-        fetch
+      def fetch
+        if valid?
+          fetch_contents
+        else
+          fail "invalid file path: #{@path}"
+        end
       end
 
       private
 
-      def fetch
+      def fetch_contents
         raise NotImplementedError
       end
     end
