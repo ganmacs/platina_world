@@ -1,38 +1,17 @@
 require "platina_world/fetcher_builder"
+require "platina_world/fetchable"
 
 module PlatinaWorld
   class Path
-    attr_reader :file_path
+    include Fetchable
 
     # file_path [String]
     def initialize(file_path)
-      @file_path, @contents_path = extract_path(file_path)
+      @file_path, @contents_path = split_path(file_path)
     end
 
-    def contents
-      return @contents if instance_variable_defined?(:@contents)
-      @contents =
-        if has_contents_path?
-          contents_fetcher.fetch
-        else
-          nil
-        end
-    end
-
-    def has_contents?
-      !!contents
-    end
-
-    def inspect
-      @name ||=
-        case
-        when directory?
-          dirname
-        when has_directory?
-          "#{dirname}/#{filename}"
-        else
-          filename
-        end
+    def to_s
+      @file_path
     end
 
     # @return [String] file name
@@ -56,25 +35,22 @@ module PlatinaWorld
     end
 
     def exist?
-      ::File.exist?(file_path)
+      ::File.exist?(@file_path)
     end
 
     private
 
-    def content_fetcher
-      @content_fetcher ||= FetcherBuild.new(@contents_path).build
+    # override
+    def contents_path
+      @contents_path
     end
 
-    def extract_path(path)
+    def split_path(path)
       if path.include?("@")
         path.split("@")
       else
         [path, nil]
       end
-    end
-
-    def has_contents_path?
-      !!@contents_path
     end
 
     def path_info
@@ -91,7 +67,7 @@ module PlatinaWorld
     # file_path = "a/b/c/"
     # file_and_directory_name(file_path) # => { directory: "a/b/c", file: ""}
     def file_and_directory_name
-      path = file_path.split("/", -1)
+      path = @file_path.split("/", -1)
       file_name = path.pop
       directory_name = path.join("/")
 

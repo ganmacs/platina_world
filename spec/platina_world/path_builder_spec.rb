@@ -2,7 +2,7 @@ describe PlatinaWorld::PathBuilder do
   let(:path_builder) { described_class.new(file_path) }
 
   describe "#build" do
-    subject { path_builder.build.map(&:file_path) }
+    subject { path_builder.build.map(&:to_s) }
 
     context "when data is String" do
       let(:file_path) do
