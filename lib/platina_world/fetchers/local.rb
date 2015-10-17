@@ -3,6 +3,11 @@ require "platina_world/fetchers/base"
 module PlatinaWorld
   module Fetcher
     class Local < Base
+      CONVERT_TABLE = {
+        "$HOME" => ENV["HOME"],
+        "$ROOT" => "#{ENV['HOME']}/.platina_world"
+      }
+
       private
 
       def valid?
@@ -14,7 +19,7 @@ module PlatinaWorld
       end
 
       def expanded_uri
-        @expanded_uri ||= @uri.to_s.gsub("$HOME", ENV["HOME"])
+        @expanded_uri ||= @uri.to_s.gsub(%r(\$[^/]+), CONVERT_TABLE)
       end
 
       def exist_resouce?
