@@ -1,4 +1,4 @@
-require "platina_world/content_fetcher"
+require "platina_world/fetcher_builder"
 
 module PlatinaWorld
   class Path
@@ -13,7 +13,7 @@ module PlatinaWorld
       return @contents if instance_variable_defined?(:@contents)
       @contents =
         if has_contents_path?
-          ContentFetcher.new(@contents_path).fetch
+          contents_fetcher.fetch
         else
           nil
         end
@@ -61,6 +61,9 @@ module PlatinaWorld
 
     private
 
+    def content_fetcher
+      @content_fetcher ||= FetcherBuild.new(@contents_path).build
+    end
 
     def extract_path(path)
       if path.include?("@")

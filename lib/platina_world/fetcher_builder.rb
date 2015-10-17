@@ -1,31 +1,26 @@
-require "uri"
 require "platina_world/fetchers/local"
 require "platina_world/fetchers/net"
 
 module PlatinaWorld
-  class ContentFetcher
+  class FetcherBuilder
     def initialize(path)
-      @path = URI.parse(path)
+      @uri = URI.parse(path)
     end
 
-    def fetch
-      fetcher.run
+    def build
+      fetcher_class.new(@uri)
     end
 
     private
 
-    def fetcher
-      @fetcher ||= fetcher_class.new(@path)
-    end
-
     def fetcher_class
-      case @path
+      case @uri
       when URI::HTTP, URI::HTTPS
         ::PlatinaWorld::Fetcher::Net
       when URI::Generic
         ::PlatinaWorld::Fetcher::Local
       else
-        raise "Unknow URI TYPE:#{@path.class}"
+        raise "Unknow URI type: #{@uri.class}(#{@uri})"
       end
     end
   end
