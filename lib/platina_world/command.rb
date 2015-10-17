@@ -13,7 +13,7 @@ module PlatinaWorld
     def call
       case
       when list?
-        template_manager.all
+        template_manager.show_items
       when setup?
         template_manager.setup
       else
@@ -40,22 +40,22 @@ module PlatinaWorld
     end
 
     def loaded_file
-      @loaded_file ||= PlatinaWorld::FileLoader.new(file_path).load
+      @loaded_file ||= PlatinaWorld::FileLoader.new(tempalte_path).load
     end
 
-    def file_path
-      if template_path
-        template_manager.file(template_path)
+    def tempalte_path
+      if tempalte_name
+        template_manager.expand(tempalte_name)
       else
         options["path"]
       end
     end
 
-    def template_path
-      @template_path ||= begin
-        option_parser.permute!(@argv) # call #permute! to clear @argv
-        @argv.pop
-      end
+    def tempalte_name
+      @tempalte_name ||= begin
+                           option_parser.permute!(@argv) # call #permute! to clear @argv
+                           @argv.pop
+                         end
     end
 
     def setup?

@@ -2,14 +2,13 @@ require "platina_world/path"
 
 module PlatinaWorld
   class TemplateManager
-    attr_reader :root_path, :template_file_pattern
+    attr_reader :template_file_pattern
 
     def initialize
-      @root_path = "#{ENV['HOME']}/.platina_world".freeze
       @template_file_pattern = "#{root_path}/*.{yml,yaml}".freeze
     end
 
-    def all
+    def show_items
       @all ||= all_files.each do |file|
         file.match(%r!#{root_path}/(?<attr>.*)\.(yml|yaml)!) do |m|
           puts m[:attr]
@@ -17,21 +16,22 @@ module PlatinaWorld
       end
     end
 
+    def root_path
+      @root_path ||= Path.new("#{ENV['HOME']}/.platina_world".freeze)
+    end
+
     def setup
-      if exist?
-        PlatinaWorld::FileStatus.skip(root_path)
+      path = root_path.to_s
+      if root_path.exist?
+        PlatinaWorld::FileStatus.skip(path)
       else
-        Dir.mkdir(root_path)
-        PlatinaWorld::FileStatus.create(root_path)
+        Dir.mkdir(path)
+        PlatinaWorld::FileStatus.create(path)
       end
     end
 
-    def file(template)
+    def expand(template)
       "#{root_path}/#{template}.yml"
-    end
-
-    def exist?
-      ::File.exist?(root_path)
     end
 
     private

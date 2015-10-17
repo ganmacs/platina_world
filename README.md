@@ -83,7 +83,7 @@ then create `.rspec` file which contents get from `http://filepaht.com`, and `.g
 - [x] dot file
 - [x] usage
 - [x] has contents( @postion syntax ?)
-- [ ] manager spec
+- [x] manager spec
 - [ ] json parse
 - [ ] tree command json parse
 - [ ] easy format
