@@ -40,7 +40,7 @@ module PlatinaWorld
     end
 
     def loaded_file
-      PlatinaWorld::FileLoader.new(file_path).load
+      @loaded_file ||= PlatinaWorld::FileLoader.new(file_path).load
     end
 
     def file_path
