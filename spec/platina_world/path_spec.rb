@@ -1,8 +1,8 @@
 describe PlatinaWorld::Path do
   let(:path) { described_class.new(file_path) }
 
-  describe "#file_name" do
-    subject { path.file_name }
+  describe "#filename" do
+    subject { path.filename }
 
     context "when file_path is a/b/c" do
       let(:file_path) { "a/b/c" }
@@ -23,8 +23,8 @@ describe PlatinaWorld::Path do
     end
   end
 
-  describe "#directory_name" do
-    subject { path.directory_name }
+  describe "#dirname" do
+    subject { path.dirname }
 
     context "when file_path is a/b/c" do
       let(:file_path) { "a/b/c" }

@@ -7,17 +7,17 @@ module PlatinaWorld
       private
 
       def generate_directory(path)
-        FileUtils.mkdir_p(path.name)
+        FileUtils.mkdir_p(path.to_s)
       end
 
       def generate_file_with_dir(path)
-        FileUtils.mkdir_p(path.directory_name)
+        FileUtils.mkdir_p(path.dirname)
         generate_file(path)
       end
 
       def generate_file(path)
         FileUtils.touch(path.file_path)
-        ::File.write(path.name, path.contents) if path.has_contents?
+        ::File.write(path.to_s, path.contents) if path.has_contents?
       end
     end
   end

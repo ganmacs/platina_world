@@ -8,12 +8,7 @@ module PlatinaWorld
 
     def build
       generate_paths(@loaded_file).flat_map do |file_path|
-        if file_path.include?("@")
-          file_path, contents_path = file_path.split("@")
-          PlatinaWorld::Path.new(file_path, contents_path)
-        else
-          PlatinaWorld::Path.new(file_path)
-        end
+        PlatinaWorld::Path.new(file_path)
       end
     end
 

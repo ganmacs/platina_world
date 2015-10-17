@@ -4,9 +4,9 @@ module PlatinaWorld
   class Path
     attr_reader :file_path
 
-    def initialize(file_path, contents_path = nil)
-      @file_path = file_path
-      @contents_path = contents_path
+    # file_path [String]
+    def initialize(file_path)
+      @file_path, @contents_path = extract_path(file_path)
     end
 
     def contents
@@ -23,39 +23,52 @@ module PlatinaWorld
       !!contents
     end
 
-    def name
+    def inspect
       @name ||=
         case
         when directory?
-          directory_name
+          dirname
         when has_directory?
-          "#{directory_name}/#{file_name}"
+          "#{dirname}/#{filename}"
         else
-          file_name
+          filename
         end
     end
 
     # @return [String] file name
-    def file_name
+    def filename
       path_info[:file]
     end
 
     # @return [String] directory path
-    def directory_name
+    def dirname
       path_info[:directory]
     end
 
     # @return [True, False] path is directory or not
     def directory?
-      file_name == ""
+      filename == ""
     end
 
     # @return [True, False] path has directory path or not
     def has_directory?
-      directory_name != ""
+      dirname != ""
+    end
+
+    def exist?
+      ::File.exist?(file_path)
     end
 
     private
+
+
+    def extract_path(path)
+      if path.include?("@")
+        path.split("@")
+      else
+        [path, nil]
+      end
+    end
 
     def has_contents_path?
       !!@contents_path
